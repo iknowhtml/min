@@ -12,7 +12,7 @@ while True:
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    print("analyzing frame")
+    #print("analyzing frame")
     faces = faceCascade.detectMultiScale(
         gray,
         scaleFactor=1.1,
@@ -20,10 +20,13 @@ while True:
         minSize=(30, 30),
         flags=cv2.CASCADE_SCALE_IMAGE
     )
-    print("frame analyzed!")
+    #print("frame analyzed!")
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+    if len(faces):
+        print("face detected!")
 
     # Display the resulting frame
     cv2.imshow('Video', frame)
