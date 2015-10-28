@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 import sys
 
+#appends api directory path to sys path
+sys.path.append("/home/pi/HROS1-Framework/Linux/project/Human_Robots_Interaction_Fall15")
+import api
+
 import ctypes
 import os
 import time
@@ -16,8 +20,22 @@ faceCascade = cv2.CascadeClassifier(cascPath)
 video_capture = cv2.VideoCapture(-1)
 
 def Main():
+    initialize()
     while True:
         detectFace() 
+
+def initialize():
+    try:
+        if api.Initialize():
+            print("Initalized")
+        else:
+            print("Intialization failed")
+    except (KeyboardInterrupt):
+        api.ServoShutdown()
+        sys.exit()
+    except():
+            api.ServoShutdown()
+            sys.exit()
 
 def detectFace():
     val = 0
