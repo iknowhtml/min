@@ -33,16 +33,14 @@ THRESHOLD = 2000
 
 
 def Main():
-
-    while True:
-        detectFace()
+    detectFace()
         
-        import api
+    import api
 	try:
             if api.Initialize():
                 print("Initalized")
             else:
-                print("Intialization failed")
+      `          print("Intialization failed")
         except (KeyboardInterrupt):
             api.ServoShutdown()
             sys.exit()
