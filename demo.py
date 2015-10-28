@@ -31,16 +31,15 @@ RATE = 48000
 RECORD_SECONDS = 5
 THRESHOLD = 2000
 
-
 def Main():
     detectFace()
-        
+    
     import api
-	try:
+        try:
             if api.Initialize():
                 print("Initalized")
             else:
-      `          print("Intialization failed")
+                print("Intialization failed")
         except (KeyboardInterrupt):
             api.ServoShutdown()
             sys.exit()
