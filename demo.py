@@ -88,23 +88,23 @@ def detectFace():
             )
         
             print("frame analyzed!")
-            # Draw a rectangle around the faces
+            #Draw a rectangle around the faces
             
-            #for (x, y, w, h) in faces:
-                #cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+            for (x, y, w, h) in faces:
+                cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
             if len(faces):
                 print("face detected")
-            # When everything is done, release the capture
-            #video_capture.release()
-            #cv2.destroyAllWindows()
+                # When everything is done, release the capture
+                video_capture.release()
+                cv2.destroyAllWindows()
                 break
             
             # Display the resulting frame
             #cv2.imshow('Video', frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
 
         val+= 1
 
