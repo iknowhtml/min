@@ -33,19 +33,21 @@ THRESHOLD = 2000
 
 def Main():
     detectFace()
-    
+
     import api
-        try:
-            if api.Initialize():
-                print("Initalized")
-            else:
-                print("Intialization failed")
-        except (KeyboardInterrupt):
-            api.ServoShutdown()
-            sys.exit()
-        except():
-            api.ServoShutdown()
-            sys.exit()
+    try:
+        if api.Initialize():
+            print("Initalized")
+        else:
+            print("Intialization failed")
+
+    except (KeyboardInterrupt):
+        api.ServoShutdown()
+        sys.exit()
+        
+    except():
+        api.ServoShutdown()
+        sys.exit()
         
 	api.PlayAction(2)
 	print('Min stood up')
