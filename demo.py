@@ -87,18 +87,18 @@ def detectFace():
                 flags=cv2.CASCADE_SCALE_IMAGE
             )
         
-        print("frame analyzed!")
+            print("frame analyzed!")
             # Draw a rectangle around the faces
             
-        #for (x, y, w, h) in faces:
+            #for (x, y, w, h) in faces:
                 #cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-        if len(faces):
-            print("face detected")
+            if len(faces):
+                print("face detected")
             # When everything is done, release the capture
             #video_capture.release()
             #cv2.destroyAllWindows()
-            break
+                break
             
             # Display the resulting frame
             #cv2.imshow('Video', frame)
