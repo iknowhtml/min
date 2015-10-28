@@ -3,7 +3,6 @@ import sys
 
 #appends api directory path to sys path
 sys.path.append("/home/pi/HROS1-Framework/Linux/project/Human_Robots_Interaction_Fall15")
-import api
 
 import ctypes
 import os
@@ -34,38 +33,32 @@ THRESHOLD = 2000
 
 
 def Main():
-    initialize()
 
     while True:
-        detectFace() 
-        stand()
-        detectSound()
-        wave()
-        sitDown()
-
-def initialize():
-    try:
-        if api.Initialize():
-            print("Initalized")
-        else:
-            print("Intialization failed")
-    except (KeyboardInterrupt):
-        api.ServoShutdown()
-        sys.exit()
-    except():
+        detectFace()
+        
+        import api
+        try:
+            if api.Initialize():
+                print("Initalized")
+            else:
+                print("Intialization failed")
+        except (KeyboardInterrupt):
             api.ServoShutdown()
             sys.exit()
+        except():
+            api.ServoShutdown()
+            sys.exit()
+        
+        api.PlayAction(8)
+        print("Min Stood up!")
 
-def stand():
-    api.PlayAction(8)
-    print("Min Stood up!")
+        detectSound()
+        
+        api.PlayAction(15)
+        print("Min Sat Down!")
 
-def sit():
-    api.PlayAction(15)
-    print("Min Sat Down!")
-
-def wave():
-	api.PlayAction(25)
+        api.PlayAction(25)
         print('Min Waved!')
 
 def detectFace():
