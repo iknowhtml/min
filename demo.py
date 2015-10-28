@@ -38,7 +38,7 @@ def Main():
         detectFace()
         
         import api
-        try:
+	try:
             if api.Initialize():
                 print("Initalized")
             else:
@@ -50,16 +50,18 @@ def Main():
             api.ServoShutdown()
             sys.exit()
         
-        api.PlayAction(8)
-        print("Min Stood up!")
-
+	api.PlayAction(2)
+	print('Min stood up')
         detectSound()
         
-        api.PlayAction(15)
-        print("Min Sat Down!")
-
         api.PlayAction(25)
         print('Min Waved!')
+
+	api.PlayAction(16)
+        print("Min Sat Down!")
+
+	api.ServoShutdown()
+	print('Shutdown')
 
 def detectFace():
     val = 0
@@ -90,11 +92,11 @@ def detectFace():
                 print("face detected")
                 # When everything is done, release the capture
                 #video_capture.release()
-                cv2.destroyAllWindows()
+                #cv2.destroyAllWindows()
                 break
             
             # Display the resulting frame
-            cv2.imshow('Video', frame)
+            #cv2.imshow('Video', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -124,7 +126,7 @@ def detectSound():
 
     		data = stream.read(CHUNK)
 
-		rms = audioop.rms(data, 2)
+	rms = audioop.rms(data, 2)
         print(rms)
 
         if(rms > THRESHOLD):
