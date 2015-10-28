@@ -34,27 +34,27 @@ THRESHOLD = 2000
 
 
 def Main():
-	initialize()
+    initialize()
 
-	while True:
-        detectFace()
+    while True:
+        detectFace() 
         stand()
-		detectSound()
-		wave()
+        detectSound()
+        wave()
         sitDown()
 
 def initialize():
-        try:
-                if api.Initialize():
-                        print("Initalized")
-                else:
-                        print("Intialization failed")
-        except (KeyboardInterrupt):
-                api.ServoShutdown()
-                sys.exit()
-        except():
-                api.ServoShutdown()
-                sys.exit()
+    try:
+        if api.Initialize():
+            print("Initalized")
+        else:
+            print("Intialization failed")
+    except (KeyboardInterrupt):
+        api.ServoShutdown()
+        sys.exit()
+    except():
+            api.ServoShutdown()
+            sys.exit()
 
 def stand():
     api.PlayAction(8)
@@ -93,36 +93,36 @@ def detectFace():
         #for (x, y, w, h) in faces:
                 #cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-            if len(faces):
-                print("face detected")
-                # When everything is done, release the capture
-                #video_capture.release()
-                #cv2.destroyAllWindows()
-                break
+        if len(faces):
+            print("face detected")
+            # When everything is done, release the capture
+            #video_capture.release()
+            #cv2.destroyAllWindows()
+            break
             
             # Display the resulting frame
             #cv2.imshow('Video', frame)
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
         val+= 1
 
 def detectSound():
 	#initialize sound pyaudio
     p = pyaudio.PyAudio()
-	stream = p.open(format=FORMAT,
-                channels=CHANNELS,
-                rate=RATE,
-                input=True,
-                input_device_index = 2)
-	
-	print("detecting sound...")
+    stream = p.open(format=FORMAT,
+        channels=CHANNELS,
+        rate=RATE,
+        input=True,
+        input_device_index = 2)
 
-	while True:
-		try:
-    		data = stream.read(CHUNK)
-		except IOError as ex:
+    print("detecting sound...")
+
+    while True:
+        try:
+            data = stream.read(CHUNK)
+        except IOError as ex:
     		stream = p.open(format=FORMAT,
             	channels=CHANNELS,
             	rate=RATE,
@@ -134,7 +134,7 @@ def detectSound():
 		rms = audioop.rms(data, 2)
         print(rms)
 
-		if(rms>THRESHOLD):
+        if(rms > THRESHOLD):
 		  print("*sound detected!")
 
 		  stream.stop_stream()
