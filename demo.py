@@ -96,15 +96,15 @@ def detectFace():
             if len(faces):
                 print("face detected")
                 # When everything is done, release the capture
-                video_capture.release()
+                #video_capture.release()
                 cv2.destroyAllWindows()
                 break
             
             # Display the resulting frame
-            #cv2.imshow('Video', frame)
+            cv2.imshow('Video', frame)
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
         val+= 1
 
