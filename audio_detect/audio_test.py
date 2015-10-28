@@ -2,21 +2,25 @@ import pyaudio
 import audioop
 import wave
 
-CHUNK = 1024
+CHUNK = 8192
 FORMAT = pyaudio.paInt16
-CHANNELS = 2
+CHANNELS = 1
 RATE = 44100
 RECORD_SECONDS = 5
 WAVE_OUTPUT_FILENAME = "output.wav"
 THRESHOLD = 14000
 
 p = pyaudio.PyAudio()
+for i in range(p.get_device_count()):
+	dev = p.get_device_info_by_index(i)
+	print((i, dev['name'],dev['maxInputChannels']))
 
 stream = p.open(format=FORMAT,
                 channels=CHANNELS,
                 rate=RATE,
                 input=True,
-                frames_per_buffer=CHUNK)
+		input_device_index = 2)
+                #frames_per_buffer=CHUNK)
 
 print("* recording")
 

@@ -26,7 +26,7 @@ while True:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
     if len(faces):
-        print("face detected!")
+        print("face detected")
 
     # Display the resulting frame
     cv2.imshow('Video', frame)
