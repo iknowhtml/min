@@ -1,26 +1,22 @@
 #!/usr/bin/python3
-import ctypes
+import sys
+
+sys.path.append("/home/pi/HROS1-Framework/Linux/project/Human_Robots_Interaction_Fall15")
 import api
+
+import ctypes
 import os
 import time
-import sys
 import struct
 
 def Main():
-        command = 1
         #api.ServoShutdown()
         try:
                 if api.Initialize():
                         print("Initalized")
-                        command = 1
                 else:
                         print("Intialization failed")
-                #api.ServoShutdown()
-                api.PlayAction(8)
-                print('Stand up')
-                #value = int(input("Turn head to"))
-                #api.SetMotorValue(20, value)
-                Run(command)
+                Run()
         except (KeyboardInterrupt):
                 api.ServoShutdown()
                 sys.exit()
@@ -28,18 +24,17 @@ def Main():
                 api.ServoShutdown()
                 sys.exit()
 
-def Run(command):
-        if(command == 0):
-               	api.PlayAction(8)
+def Run():
+        #api.Walk(True)
+        #print("Running...")
+        #move foward
+                api.PlayAction(8)
                 print('Stand up')
-                command = 1
-        elif(command == 1):
                 api.WalkMove(0)
                 api.WalkTurn(20)
-        elif(command == 2):
-                api.WalkMove(0)
-                api.WalkTurn(-20)
-        Run(command)
+		print('Walk in circle')
+		api.PlayAction(25)
+                print('Wave')
 
 
 if __name__ == "__main__": 
